@@ -1,8 +1,10 @@
-import React from 'react';
+interface TechBackgroundProps {
+  className?: string;
+}
 
-const TechBackground = () => {
+const TechBackground: React.FC<TechBackgroundProps> = ({ className }) => {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className={`fixed inset-0 -z-10 overflow-hidden ${className}`}>
       <div className="absolute inset-0 bg-black">
         <div className="absolute inset-0">
           {/* Animated grid pattern */}
@@ -20,6 +22,22 @@ const TechBackground = () => {
           <div className="absolute inset-0" style={{
             background: 'radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.15) 0%, transparent 60%)',
           }} />
+
+          {/* Floating particles */}
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-green-500 opacity-20"
+              style={{
+                width: Math.random() * 4 + 2 + 'px',
+                height: Math.random() * 4 + 2 + 'px',
+                left: Math.random() * 100 + '%',
+                top: Math.random() * 100 + '%',
+                animation: `float ${Math.random() * 10 + 10}s linear infinite`,
+                animationDelay: `-${Math.random() * 10}s`
+              }}
+            />
+          ))}
         </div>
       </div>
     </div>
